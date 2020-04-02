@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块的小方格动态显示</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            background-color: rgb(17, 16, 16);
+        }
+
+        td {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgb(189, 188, 188);
+        }
+    </style>
+</head>
+
+<body>
+    <h4>俄罗斯方块的小方格动态显示</h4>
+    <table id="table">
+
+    </table>
+
+    <script>
+        var table = document.getElementById('table');
+
+        for (let i = 0; i < 20; i++) {
+            // 第一层循环，创建20个tr
+            var tr = document.createElement('tr');
+            for (let j = 0; j < 12; j++) {
+                // 第二层循环，创建12个td
+                var td = document.createElement('td');
+                // 追加到刚刚创建出来的tr中
+                tr.appendChild(td);
+            }
+            // 追加到刚刚创建出来的table中
+            table.appendChild(tr);
+        }
+    </script>
+</body>
+
+</html>

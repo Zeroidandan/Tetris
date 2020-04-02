@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块-实现随机砖块</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            background-color: rgb(90, 88, 88);
+        }
+
+        td {
+            border: 1px solid #000;
+            width: 30px;
+            height: 30px;
+        }
+
+        /* 添加颜色:准备7个渐变色*/
+        td.c1 {
+            background: -webkit-linear-gradient(bottom right, rgb(182, 44, 44), rgb(250, 6, 6));
+        }
+
+        td.c2 {
+            background: -webkit-linear-gradient(bottom right, rgb(255, 157, 0), rgb(230, 201, 42));
+        }
+
+        td.c3 {
+            background: -webkit-linear-gradient(bottom right, rgb(239, 243, 6), rgb(213, 243, 41));
+        }
+
+        td.c4 {
+            background: -webkit-linear-gradient(bottom right, rgb(11, 246, 3), rgb(94, 235, 129));
+        }
+
+        td.c5 {
+            background: -webkit-linear-gradient(bottom right, rgb(0, 98, 255), rgb(79, 137, 243));
+        }
+
+        td.c6 {
+            background: -webkit-linear-gradient(bottom right, rgb(0, 225, 255), rgb(62, 233, 248));
+        }
+
+        td.c7 {
+            background: -webkit-linear-gradient(bottom right, rgb(98, 0, 255), rgb(146, 78, 235));
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+        //*****************************
+        //          定义区域
+        //*****************************
+        // 获取表格
+        var table = document.getElementById('table');
+
+        // 定义砖块空数组
+        var brick = [];
+
+        // 定义砖块位置
+        var row = 0;
+        var col = 4;
+
+        // 定义地图函数
+        var map = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ];
+
+
+        //*****************************
+        //          函数区域
+        //*****************************
+        // 定义染色函数
+        function dye(row, col, color) {
+            table.getElementsByTagName('tr')[row].getElementsByTagName('td')[col].className = 'c' + color;
+        }
+
+        // 画砖块函数
+        function drawBrick() {
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    // 如果砖块的i行j列不是0，进行染色
+                    if (brick[i][j] != 0) {
+                        // 下落砖块位置
+                        dye(i + row, j + col, brick[i][j]);
+                    }
+                }
+            }
+        }
+
+        // 清屏函数
+        function clear() {
+            for (let i = 0; i < 20; i++) {
+                for (let j = 0; j < 12; j++) {
+                    dye(i, j, 0);
+                }
+            }
+        }
+
+        // 画地图函数
+        function drawMap() {
+            for (let i = 0; i < 20; i++) {
+                for (let j = 0; j < 12; j++) {
+                    // 如果地图的i行j列不是0，进行染色
+                    if (map[i][j] != 0) {
+                        // 下落砖块位置
+                        dye(i, j, map[i][j]);
+                    }
+                }
+            }
+        }
+
+        // 随机砖块函数
+        function randomBrick() {
+            // 将7中砖块放在一个数组中
+            var allblock = [
+                [
+                    [0, 1, 0, 0],
+                    [0, 1, 0, 0],
+                    [0, 1, 1, 0],
+                    [0, 0, 0, 0],
+                ],
+                [
+                    [0, 2, 0, 0],
+                    [0, 2, 0, 0],
+                    [0, 2, 0, 0],
+                    [0, 2, 0, 0],
+                ],
+                [
+                    [0, 3, 0, 0],
+                    [0, 3, 0, 0],
+                    [3, 3, 0, 0],
+                    [0, 0, 0, 0],
+                ],
+                [
+                    [4, 4, 4, 0],
+                    [0, 4, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                ],
+                [
+                    [5, 5, 0, 0],
+                    [0, 5, 5, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                ],
+                [
+                    [0, 6, 6, 0],
+                    [6, 6, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                ],
+                [
+                    [0, 0, 0, 0],
+                    [0, 7, 7, 0],
+                    [0, 7, 7, 0],
+                    [0, 0, 0, 0],
+                ]
+            ];
+
+            // 随机数
+            var n = parseInt(Math.random() * 7);
+
+            //砖块随机形状
+            brick = allblock[n];
+
+        }
+
+        // 旋转砖块
+        function rotate() {
+            // 定义旋转结果数组
+            var result = [[], [], [], []];
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    result[j][3 - i] = brick[i][j];
+                }
+            }
+
+            // 判断能否旋转，跟判断能否下落一样
+            var canratate = true;
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    // 判断砖块是否与地图的下一行卡住
+                    if (result[i][j] != 0 && map[i + row][j + col] != 0) {
+                        canratate = false;
+                    }
+                }
+            }
+            if (canratate) {
+                brick = result;
+            }
+        }
+
+        //*****************************
+        //          调用函数
+        //*****************************
+        // 随机砖块形状
+        randomBrick();
+        // 画砖块
+        drawBrick();
+        // 画地图
+        drawMap();
+
+
+        //*****************************
+        //          定时器
+        //*****************************
+        setInterval(function () {
+            // 判断下落，假设能下落
+            var ifdrop = true;
+            // 判断卡住
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    // 判断砖块是否与地图的下一行卡住
+                    if (brick[i][j] != 0 && map[i + row + 1][j + col] != 0) {
+                        ifdrop = false;
+                    }
+                }
+            }
+            if (ifdrop) {
+                // 行++使砖块下落
+                row++;
+            } else {
+                // 卡住，将下落的砖块留在地图上
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        if (brick[i][j] != 0) {
+                            map[i + row][j + col] = brick[i][j];
+                        }
+                    }
+                }
+                // 
+                row = 0;
+                // 随机砖块形状
+                randomBrick();
+            }
+            // 清屏
+            clear();
+            // 画砖块
+            drawBrick();
+            // 画地图
+            drawMap();
+
+        }, 400);
+
+        //*****************************
+        //          事件监听
+        //*****************************
+        // 监听整个文档的键盘按下实现
+        document.onkeydown = function (e) {
+            if (e.keyCode == 38) {
+                rotate();
+            } else if (e.keyCode == 37) {
+                // 判断能否左移
+                var canLeft = true;
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        // 判断砖块是否与地图的下一行卡住
+                        if (brick[i][j] != 0 && map[i + row][j + col - 1] != 0) {
+                            canLeft = false;
+                        }
+                    }
+                }
+                if (canLeft) {
+                    col--;
+                }
+            } else if (e.keyCode == 39) {
+                // 判断能否右移
+                var canRight = true;
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        // 判断砖块是否与地图的下一行卡住
+                        if (brick[i][j] != 0 && map[i + row][j + col + 1] != 0) {
+                            canRight = false;
+                        }
+                    }
+                }
+                if (canRight) {
+                    col++;
+                }
+            }
+            // 清屏
+            clear();
+            // 画砖块
+            drawBrick();
+            // 画地图
+            drawMap();
+        }
+    </script>
+</body>
+
+</html>

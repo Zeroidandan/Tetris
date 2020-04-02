@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格的相关操作</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #000;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        /* 添加颜色:准备7个渐变色*/
+        td.c1 {
+            background: -webkit-linear-gradient(bottom right, rgb(182, 44, 44), rgb(250, 6, 6));
+        }
+
+        td.c2 {
+            background: -webkit-linear-gradient(bottom right, rgb(255, 157, 0), rgb(230, 201, 42));
+        }
+
+        td.c3 {
+            background: -webkit-linear-gradient(bottom right, rgb(239, 243, 6), rgb(213, 243, 41));
+        }
+
+        td.c4 {
+            background: -webkit-linear-gradient(bottom right, rgb(11, 246, 3), rgb(94, 235, 129));
+        }
+
+        td.c5 {
+            background: -webkit-linear-gradient(bottom right, rgb(0, 98, 255), rgb(79, 137, 243));
+        }
+
+        td.c6 {
+            background: -webkit-linear-gradient(bottom right, rgb(0, 225, 255), rgb(62, 233, 248));
+        }
+
+        td.c7 {
+            background: -webkit-linear-gradient(bottom right, rgb(98, 0, 255), rgb(146, 78, 235));
+        }
+
+        button {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 添加按钮 -->
+    <button id="btn1">0行0列变红</button>
+    <button id="btn2">1行1列变橙</button>
+    <button id="btn3">2行2列变黄</button>
+    <button id="btn4">3行3列变绿</button>
+    <button id="btn5">4行2列变蓝</button>
+    <button id="btn6">5行1列变青</button>
+    <button id="btn7">6行0列变紫</button>
+
+    <table id="table">
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+        </tr>
+        <tr>
+            <td>I</td>
+            <td>J</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>U</td>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+        </tr>
+        <tr>
+            <td>Y</td>
+            <td>Z</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    <script>
+        // 得到表格
+        var table = document.getElementById('table');
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+        var btn5 = document.getElementById('btn5');
+        var btn6 = document.getElementById('btn6');
+        var btn7 = document.getElementById('btn7');
+        // 封装变色函数
+        function bianse(a, b, color) {
+            table.getElementsByTagName('tr')[a].getElementsByTagName('td')[b].className = 'c' + color;
+        }
+        // 按钮监听调用函数
+        btn1.onclick = function () {
+            bianse(0, 0, 1);
+        }
+        btn2.onclick = function () {
+            bianse(1, 1, 2);
+        }
+        btn3.onclick = function () {
+            bianse(2, 2, 3);
+        }
+        btn4.onclick = function () {
+            bianse(3, 3, 4);
+        }
+        btn5.onclick = function () {
+            bianse(4, 2, 5);
+        }
+        btn6.onclick = function () {
+            bianse(5, 1, 6);
+        }
+        btn7.onclick = function () {
+            bianse(6, 0, 7);
+        }
+    </script>
+</body>
+
+</html>
